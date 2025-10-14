@@ -380,6 +380,9 @@ namespace Aster {
          */
         inline constexpr Mode m_process_character(
             char ch, const std::string_view& glob, const std::string_view& input) {
+            // ensure we actually have a full input
+            if (m_state.path >= input.size()) return Mode::WILD;
+
             // check if we cannot escape the incoming character at all
             if (!m_unescape(glob, ch)) return Mode::FAIL;
 

@@ -104,8 +104,12 @@ namespace Aster::Detail {
 
     /// @brief Allows getting the current-working directory.
     static inline constexpr std::string getcwd() {
+        // attempt getting the baseline buffer
         char* buffer = _ASTER_PLATFORM_GETCWD(nullptr, 0);
-        return std::string(buffer), std::free(buffer), buffer;
+
+        // prepare the clone of the buffer now
+        auto cwd = std::string(buffer);
+        return std::free(buffer), cwd;
     }
 
 }  // namespace Aster::Detail
