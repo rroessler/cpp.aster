@@ -1,0 +1,9 @@
+# VSCode Development
+.cache/
+.vscode/
+
+# Build Outputs
+build/
+
+# Platform Files
+.DS_Store
