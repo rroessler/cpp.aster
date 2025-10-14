@@ -15,8 +15,8 @@ namespace Aster::Detail {
     /// @brief Available Pattern Flags.
     struct Flags {
         bool negated : 1 = false;
-        bool absolute : 1 = false;
         bool globstar : 1 = false;
+        bool absolute : 1 = false;
         bool exact : 1 = false;
     };
 
@@ -102,10 +102,11 @@ namespace Aster::Detail {
             // prepare some callbacks to deduce flags
             auto literal = [](const Slice& slice) { return slice.hint() == Hint::LITERAL; };
 
-            // construct the resulting flags to be used
+            // construct the resulting flags to be used now
             return {
                 .negated = negated,
                 .globstar = m_globstar(slices),
+                .absolute = Detail::absolute(glob),
                 .exact = std::ranges::all_of(slices, literal),
             };
         }

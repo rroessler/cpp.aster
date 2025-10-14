@@ -66,6 +66,30 @@ namespace Aster::Detail {
     }
 
     /**
+     * @brief Determines in an input is absolute.
+     * @param input             Input to check.
+     */
+    static inline constexpr bool absolute(const std::string_view& input) {
+#ifdef _ASTER_PLATFORM_WIN32
+        // ignore if the size is invalid at all
+        if (input.size() < 3) return false;
+
+        // pull out the components now
+        auto letter = input[0];
+        auto middle = input[1];
+        auto detail = input[2];
+
+        // check if we have a suitable value now
+        if (!separator(detail)) return false;
+
+        // if we have a colon, validate drive-letter otherwise UNC path
+        return middle == ':' || (separator(letter) && separator(middle));
+#else
+        return input.starts_with('/');
+#endif
+    }
+
+    /**
      * @brief Handles join path segments together.
      * @param prefix            Prefix segment.
      * @param suffix            Suffix segment.

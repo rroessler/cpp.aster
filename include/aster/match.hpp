@@ -440,7 +440,7 @@ namespace Aster {
         /// @brief Handles incoming '?' characters.
         template <>
         inline constexpr Mode m_process_action<Action::WILD_QUERY>(
-            const std::string_view& glob, const std::string_view& input, uint32_t start) {
+            const std::string_view&, const std::string_view& input, uint32_t) {
             if (Detail::separator(input[m_state.path])) return Mode::WILD;
             return m_state.glob += 1, m_state.path += 1, Mode::OKAY;
         }
@@ -448,7 +448,7 @@ namespace Aster {
         /// @brief Handles incoming '[...]' matches
         template <>
         inline constexpr Mode m_process_action<Action::BRACK_OPEN>(
-            const std::string_view& glob, const std::string_view& input, uint32_t start) {
+            const std::string_view& glob, const std::string_view& input, uint32_t) {
             // ignore if the input has been completed at all
             if (m_state.path >= input.size()) return Mode::WILD;
 
@@ -499,7 +499,7 @@ namespace Aster {
         /// @brief Handles incoming '{...}' expansion.
         template <>
         inline constexpr Mode m_process_action<Action::BRACE_OPEN>(
-            const std::string_view& glob, const std::string_view& input, uint32_t start) {
+            const std::string_view& glob, const std::string_view& input, uint32_t) {
             auto predicate = [this](const auto& pair) { return pair.first == m_state.glob; };
             auto found = std::ranges::find_if(*m_pending, predicate);  // attempt matching
 

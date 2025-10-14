@@ -60,8 +60,8 @@ namespace Aster {
          * @param pattern               Glob pattern.
          * @param options               Iterator options.
          */
-        constexpr Iterator(const Pattern* pattern, const Options& options = Options()) :
-            m_pattern(pattern), m_pending({ options.cwd }) {}
+        constexpr Iterator(const Pattern* pattern, const Options& options = {}) :
+            m_options(options), m_pattern(pattern), m_pending({ options.cwd }) {}
 
         //  OPERATOR METHODS  //
 
@@ -148,6 +148,7 @@ namespace Aster {
          */
         inline constexpr bool m_test(std::string_view input) const noexcept {
             if (!m_pattern->absolute()) input.remove_prefix(m_options.cwd.size() + 1);
+            if (!m_options.hidden && input.starts_with('.')) return false;
             return m_pattern->matches(input);  // check if the input matches now
         }
 
