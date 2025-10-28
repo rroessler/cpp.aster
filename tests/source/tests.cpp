@@ -1,6 +1,7 @@
 /// Vendor Includes
 #include <aster/aster.hpp>
 #include <catch2/catch_all.hpp>
+#include <print>
 
 //  TEST CASES  //
 

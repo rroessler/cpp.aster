@@ -32,7 +32,7 @@ namespace Aster::Detail {
          * @param prefix                Prefix directory.
          */
         constexpr explicit Traversal(const std::string& prefix = Detail::getcwd()) : m_prefix(prefix) {
-            m_stream = ::FindFirstFileA((m_prefix + "\\*").c_str(), &m_data), advance();
+            m_stream = ::FindFirstFileA((m_prefix + "\\*").c_str(), &m_data);
         }
 
         /// @brief Ensures we close a directory when necessary.

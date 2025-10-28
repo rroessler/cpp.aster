@@ -14,7 +14,7 @@ set(ASTER_CXX_STANDARD 23)
 # prepare the baseline versioning to be used
 set(ASTER_VERSION_MAJOR 1)
 set(ASTER_VERSION_MINOR 1)
-set(ASTER_VERSION_PATCH 1)
+set(ASTER_VERSION_PATCH 2)
 
 # combine all the versioning details together now
 set(ASTER_VERSION_SHORT "${ASTER_VERSION_MAJOR}.${ASTER_VERSION_MINOR}.${ASTER_VERSION_PATCH}")
