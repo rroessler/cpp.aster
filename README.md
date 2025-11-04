@@ -63,6 +63,10 @@ struct Aster::Options {
 };
 ```
 
+## Credits
+
+This library is based on the pattern-matching algorithm in [`oxc-project/fast-glob`](https://github.com/oxc-project/fast-glob) which is derived from on [`devongovett/glob-match`](https://github.com/devongovett/glob-match).
+
 ## License
 
 This software is released under the terms of the MIT license.
