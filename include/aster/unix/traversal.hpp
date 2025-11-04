@@ -1,5 +1,5 @@
-#ifndef _ASTER_TRAVERSAL_HPP
-#define _ASTER_TRAVERSAL_HPP
+#ifndef _ASTER_TRAVERSAL_UNIX_HPP
+#define _ASTER_TRAVERSAL_UNIX_HPP
 
 /// Aster Includes
 #include "aster/entry.hpp"

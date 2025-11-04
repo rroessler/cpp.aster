@@ -1,5 +1,5 @@
-#ifndef _ASTER_TRAVERSAL_HPP
-#define _ASTER_TRAVERSAL_HPP
+#ifndef _ASTER_TRAVERSAL_WIN32_HPP
+#define _ASTER_TRAVERSAL_WIN32_HPP
 
 /// Aster Includes
 #include "aster/entry.hpp"
@@ -16,7 +16,7 @@ namespace Aster::Detail {
         Entry m_current = {};
 
         /// @brief Directory descriptor.
-        WIN32_FIND_DATAW m_data = {};
+        WIN32_FIND_DATAA m_data = {};
 
         /// @brief File-handle reference.
         HANDLE m_stream = INVALID_HANDLE_VALUE;
@@ -32,7 +32,7 @@ namespace Aster::Detail {
          * @param prefix                Prefix directory.
          */
         constexpr explicit Traversal(const std::string& prefix = Detail::getcwd()) : m_prefix(prefix) {
-            m_stream = ::FindFirstFileA((m_prefix + "/*").c_str(), &m_data), advance();
+            m_stream = ::FindFirstFileA((m_prefix + "\\*").c_str(), &m_data);
         }
 
         /// @brief Ensures we close a directory when necessary.
@@ -91,7 +91,7 @@ namespace Aster::Detail {
             auto path = m_ignored(suffix) ? suffix : Detail::join(m_prefix, suffix);
 
             // and resolve the outgoing path to be used now
-            return { path, m_archetype(entry) };
+            return { path, m_archetype() };
         }
 
         /// @brief Gets the current associated archetype.
