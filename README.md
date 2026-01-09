@@ -1,6 +1,6 @@
 # Aster - Fast C++ Globbing
 
-Aster is an efficient, compact and robust cross-platform C++ [globbing](<https://en.wikipedia.org/wiki/Glob_(programming)>) library. This library provides a fast baseline globbing function and a walker for traversing the file-system.
+Aster is an efficient, compact and robust cross-platform C++ [globbing](<https://en.wikipedia.org/wiki/Glob_(programming)>) library. This library provides a fast baseline globbing function and an optimized walker for traversing the file-system through globs.
 
 ## Installation
 
@@ -48,7 +48,7 @@ assert(Aster::Match::glob(glob, path)); // single match
 ```c++
 auto options = Aster::Options( /** initial directory */ );
 auto markdown = Aster::Walker("**/*.md"); // match ".md" files
-for (const auto& entry : markdown.iterate()) { ... }
+for (const auto& entry : markdown.iterate(options)) { ... }
 ```
 
 ### Glob Options
@@ -62,6 +62,10 @@ struct Aster::Options {
     std::string cwd = "...";    // The initial working directory.
 };
 ```
+
+## Credits
+
+This library is based on the pattern-matching algorithm in [`oxc-project/fast-glob`](https://github.com/oxc-project/fast-glob) which is derived from on [`devongovett/glob-match`](https://github.com/devongovett/glob-match).
 
 ## License
 
